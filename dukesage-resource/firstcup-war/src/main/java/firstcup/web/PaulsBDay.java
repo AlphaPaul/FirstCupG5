@@ -5,9 +5,12 @@
  */
 package firstcup.web;
 
+import com.e2dev.jni.NativeSingleton;
 import java.io.Serializable;
+import java.util.StringTokenizer;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.servlet.ServletException;
 
 /**
  *
@@ -18,13 +21,16 @@ import javax.inject.Named;
 @SessionScoped
 public class PaulsBDay implements Serializable {
     
-    protected int paulAge = 32;
+    protected int paulAge = 32;    
+    protected String helloString = "hello";
+
+    protected NativeSingleton jniSingleton;
     
-    
-    public PaulsBDay(){
+    public PaulsBDay() {
+        jniSingleton = NativeSingleton.getInstance();
         
     }
-    
+
     /**
      * Get the value of paulAge
      *
@@ -38,4 +44,22 @@ public class PaulsBDay implements Serializable {
         paulAge = age;
     }
     
+    public String getHelloString(){
+        return helloString;
+    }
+    
+    public void setHelloString(String hello){
+        helloString = hello;
+    }
+    
+    public void loadJniLib(){
+       jniSingleton.loadJniLibrary();
+    }
+    
+    public void updateHelloStringFromJNI(){
+        
+        int num = jniSingleton.getNativeNumber();
+        
+        helloString = "Hello, the number received is: " + num;
+    }
 }

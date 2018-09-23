@@ -41,6 +41,15 @@
             <!-- test with another properties -->
             <h:outputText value="#{bundle.PaulAge} #{paulsBDay.paulAge}"/>
             <p/>
+            <!-- test with a method -->
+            <p><h:commandButton value="Change Hello" 
+                                action="#{paulsBDay.updateHelloStringFromJNI}"/></p>
+            <p><h:outputText value="#{paulsBDay.helloString}"/></p>
+            
+            <p><h:commandButton value="Load JNI Lib" 
+                                action="#{paulsBDay.loadJniLib}"/></p>
+            <p><h:outputText value="Load JNI Lib"/></p>
+            
             <h:outputText
                 value="#{bundle.AverageAge} #{dukesBDay.averageAgeDifference}." />
             <p/>
